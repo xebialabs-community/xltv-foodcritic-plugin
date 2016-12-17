@@ -1,0 +1,3 @@
+FC003: Check whether you are running with chef server before using server-specific features: ./recipes/ip-logger.rb:1
+FC008: Generated cookbook metadata needs updating: ./metadata.rb:2
+FC008: Generated cookbook metadata needs updating: ./metadata.rb:3
