@@ -14,7 +14,7 @@ This plugin will parse [Foodcritic](http://www.foodcritic.io/) results files and
 
 [xltv-foodcritic-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xltv-foodcritic-plugin.svg?branch=master
 [xltv-foodcritic-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xltv-foodcritic-plugin
-[xltv-foodcritic-plugin-codacy-image]: https://api.codacy.com/project/badge/Grade/4de5379d631549b69147d0fdd290a21f
+[xltv-foodcritic-plugin-codacy-image]: https://api.codacy.com/project/badge/Grade/504385334e30401f94b0280234f7530c
 [xltv-foodcritic-plugin-codacy-url]: https://www.codacy.com/app/rvanstone/xltv-foodcritic-plugin
 [xltv-foodcritic-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xltv-foodcritic-plugin/badges/gpa.svg
 [xltv-foodcritic-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xltv-foodcritic-plugin
