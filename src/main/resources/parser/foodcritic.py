@@ -13,7 +13,7 @@ import re
 from parser.xunit import throw_if_some_failed, parse_last_modified, parse_junit_test_results, open_file
 
 
-def rubocop_validate_files(files):
+def foodcritic_validate_files(files):
     filtered = []
     for file in files:
         if str(file).endswith("csv"):
@@ -21,7 +21,7 @@ def rubocop_validate_files(files):
     throw_if_some_failed(files, filtered)
 
 
-def rubocop_iterate_test_cases(file):
+def foodcritic_iterate_test_cases(file):
     """
     Iterate all test cases found in `file`.
     :param file:
@@ -34,11 +34,11 @@ def rubocop_iterate_test_cases(file):
             yield (line, (match_obj.group(1), match_obj.group(3), match_obj.group(4)))
 
 
-def rubocop_duration(splitResult):
+def foodcritic_duration(splitResult):
     return 0
 
 
-def rubocop_result(scenario):
+def foodcritic_result(scenario):
     match_obj = re.match( r'^(FC[0-9]+): (.*): ([^:]+):([0-9]+)$', scenario)
     if match_obj.group(1):
         return "FAILED"
@@ -46,13 +46,13 @@ def rubocop_result(scenario):
         return "OTHER"
     return "PASSED"
 
-def rubocop_failure_reason(scenario):
+def foodcritic_failure_reason(scenario):
     match_obj = re.match( r'^(FC[0-9]+): (.*): ([^:]+):([0-9]+)$', scenario)
     error_message = "%s - %s" % (match_obj.group(1), match_obj.group(2))
     unicode_error_message = unicode(error_message, "utf-8")
     return unicode_error_message.encode("ascii", "xmlcharrefreplace")
 
-def rubocop_custom_properties(scenario, file):
+def foodcritic_custom_properties(scenario, file):
     match_obj = re.match( r'^(FC[0-9]+): (.*): ([^:]+):([0-9]+)$', scenario)
     return {
         "code": match_obj.group(1),
@@ -62,22 +62,22 @@ def rubocop_custom_properties(scenario, file):
     }
 
 
-def rubocop_last_modified(file):
+def foodcritic_last_modified(file):
     return file.lastModified()
 
 
-rubocop_validate_files(files)
+foodcritic_validate_files(files)
 
-last_modified = parse_last_modified(files, extract_last_modified=rubocop_last_modified)
+last_modified = parse_last_modified(files, extract_last_modified=foodcritic_last_modified)
 
 print 'LAST MOD', last_modified, test_run_historian.isKnownKey(str(last_modified))
 if not test_run_historian.isKnownKey(str(last_modified)):
     events = parse_junit_test_results(files, last_modified,
-                                      iterate_test_cases=rubocop_iterate_test_cases,
-                                      extract_duration=rubocop_duration,
-                                      extract_result=rubocop_result,
-                                      extract_failure_reason=rubocop_failure_reason,
-                                      extract_custom_properties=rubocop_custom_properties)
+                                      iterate_test_cases=foodcritic_iterate_test_cases,
+                                      extract_duration=foodcritic_duration,
+                                      extract_result=foodcritic_result,
+                                      extract_failure_reason=foodcritic_failure_reason,
+                                      extract_custom_properties=foodcritic_custom_properties)
     print 'built run with events', events
 else:
     events = []
